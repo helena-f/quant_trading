@@ -115,6 +115,7 @@ import jdehorty/KernelFunctions/2 as kernels
 type Settings
     float source
     int neighborsCount
+    int lookbackBars
     int maxBarsBack
     int featureCount
     int colorCompression
@@ -198,6 +199,7 @@ Settings settings =
  Settings.new(
    input.source(title='Source', defval=close, group="General Settings", tooltip="Source of the input data"),
    input.int(title='Neighbors Count', defval=8, group="General Settings", minval=1, maxval=100, step=1, tooltip="Number of neighbors to consider"),
+   input.int(title="Lookback Bars", defval=4, group="General Settings",  minval=1, maxval=500, tooltip="Number of bars to look back for calculations"),
    input.int(title="Max Bars Back", defval=2000, group="General Settings"),
    input.int(title="Feature Count", defval=5, group="Feature Engineering", minval=2, maxval=5, tooltip="Number of features to use for ML predictions."),
    input.int(title="Color Compression", defval=1, group="General Settings", minval=1, maxval=10, tooltip="Compression factor for adjusting the intensity of the color scale."),
@@ -288,6 +290,7 @@ Label direction =
 
 // Derived from General Settings
 maxBarsBackIndex = last_bar_index >= settings.maxBarsBack ? last_bar_index - settings.maxBarsBack : 0
+lookbackBars = settings.lookbackBars
 
 // EMA Settings 
 useEmaFilter = input.bool(title="Use EMA Filter", defval=false, group="Filters", inline="ema")
@@ -313,9 +316,6 @@ showBarColors = input.bool(true, "Show Bar Colors", tooltip="Whether to show the
 showBarPredictions = input.bool(defval = true, title = "Show Bar Prediction Values", tooltip = "Will show the ML model's evaluation of each bar as an integer.", group="Display Settings")
 useAtrOffset = input.bool(defval = false, title = "Use ATR Offset", tooltip = "Will use the ATR offset instead of the bar prediction offset.", group="Display Settings")
 barPredictionsOffset = input.float(0, "Bar Prediction Offset", minval=0, tooltip="The offset of the bar predictions as a percentage from the bar high or close.", group="Display Settings")
-
-// Lookback parameter settings
-lookbackBars = input.int(4, title="Lookback Bars", minval=1, maxval=500, tooltip="Number of bars to look back for calculations")
 
 
 // =================================
