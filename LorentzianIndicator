@@ -2,7 +2,7 @@
 // ©jdehorty
 
 // @version=5
-indicator('Machine Learning: Lorentzian Classification', 'Lorentzian Classification', true, precision=4, max_labels_count=500) 
+indicator('Modified Machine Learning: Lorentzian Classification', 'Modified Lorentzian Classification', true, precision=4, max_labels_count=500) 
 
 import jdehorty/MLExtensions/2 as ml
 import jdehorty/KernelFunctions/2 as kernels
@@ -314,8 +314,9 @@ showBarPredictions = input.bool(defval = true, title = "Show Bar Prediction Valu
 useAtrOffset = input.bool(defval = false, title = "Use ATR Offset", tooltip = "Will use the ATR offset instead of the bar prediction offset.", group="Display Settings")
 barPredictionsOffset = input.float(0, "Bar Prediction Offset", minval=0, tooltip="The offset of the bar predictions as a percentage from the bar high or close.", group="Display Settings")
 
-// Lookback parameter
-lookbackBars = 4
+// Lookback parameter settings
+lookbackBars = input.int(4, title="Lookback Bars", minval=1, maxval=500, tooltip="Number of bars to look back for calculations")
+
 
 // =================================
 // ==== Next Bar Classification ====
