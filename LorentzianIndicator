@@ -201,13 +201,13 @@ Settings settings =
    input.int(title="Max Bars Back", defval=2000, group="General Settings"),
    input.int(title="Feature Count", defval=5, group="Feature Engineering", minval=2, maxval=5, tooltip="Number of features to use for ML predictions."),
    input.int(title="Color Compression", defval=1, group="General Settings", minval=1, maxval=10, tooltip="Compression factor for adjusting the intensity of the color scale."),
-   input.bool(title="Show Default Exits", defval=false, group="General Settings", tooltip="Default exits occur exactly 4 bars after an entry signal. This corresponds to the predefined length of a trade during the model's training process.", inline="exits"),
+   input.bool(title="Show Default Exits", defval=false, group="General Settings", tooltip="Default exits occur exactly lookbackBars bars after an entry signal. This corresponds to the predefined length of a trade during the model's training process.", inline="exits"),
    input.bool(title="Use Dynamic Exits", defval=false, group="General Settings", tooltip="Dynamic exits attempt to let profits ride by dynamically adjusting the exit threshold based on kernel regression logic.", inline="exits")
  )
    
 // Trade Stats Settings
 // Note: The trade stats section is NOT intended to be used as a replacement for proper backtesting. It is intended to be used for calibration purposes only.
-showTradeStats = input.bool(true, 'Show Trade Stats', tooltip='Displays the trade stats for a given configuration. Useful for optimizing the settings in the Feature Engineering section. This should NOT replace backtesting and should be used for calibration purposes only. Early Signal Flips represent instances where the model changes signals before 4 bars elapses; high values can indicate choppy (ranging) market conditions.', group="General Settings")
+showTradeStats = input.bool(true, 'Show Trade Stats', tooltip='Displays the trade stats for a given configuration. Useful for optimizing the settings in the Feature Engineering section. This should NOT replace backtesting and should be used for calibration purposes only. Early Signal Flips represent instances where the model changes signals before lookbackBars bars elapses; high values can indicate choppy (ranging) market conditions.', group="General Settings")
 useWorstCase = input.bool(false, "Use Worst Case Estimates", tooltip="Whether to use the worst case scenario for backtesting. This option can be useful for creating a conservative estimate that is based on close prices only, thus avoiding the effects of intrabar repainting. This option assumes that the user does not enter when the signal first appears and instead waits for the bar to close as confirmation. On larger timeframes, this can mean entering after a large move has already occurred. Leaving this option disabled is generally better for those that use this indicator as a source of confluence and prefer estimates that demonstrate discretionary mid-bar entries. Leaving this option enabled may be more consistent with traditional backtesting results.", group="General Settings")
 
 // Settings object for user-defined settings
@@ -314,14 +314,17 @@ showBarPredictions = input.bool(defval = true, title = "Show Bar Prediction Valu
 useAtrOffset = input.bool(defval = false, title = "Use ATR Offset", tooltip = "Will use the ATR offset instead of the bar prediction offset.", group="Display Settings")
 barPredictionsOffset = input.float(0, "Bar Prediction Offset", minval=0, tooltip="The offset of the bar predictions as a percentage from the bar high or close.", group="Display Settings")
 
+// Lookback parameter
+lookbackBars = 4
+
 // =================================
 // ==== Next Bar Classification ====
 // =================================
 
-// This model specializes specifically in predicting the direction of price action over the course of the next 4 bars. 
-// To avoid complications with the ML model, this value is hardcoded to 4 bars but support for other training lengths may be added in the future.
+// This model specializes specifically in predicting the direction of price action over the course of the next lookbackBars. 
+// To avoid complications with the ML model, this value is hardcoded to lookbackBars but support for other training lengths may be added in the future.
 src = settings.source
-y_train_series = src[4] < src[0] ? direction.short : src[4] > src[0] ? direction.long : direction.neutral
+y_train_series = src[lookbackBars] < src[0] ? direction.short : src[lookbackBars] > src[0] ? direction.long : direction.neutral
 var y_train_array = array.new_int(0)
 
 // Variables used for ML Logic
@@ -365,9 +368,9 @@ array.push(y_train_array, y_train_series)
 // To address these issues, a novel Approximate Nearest Neighbors (ANN) algorithm is used in this indicator.
 
 // In the below ANN algorithm:
-// 1. The algorithm iterates through the dataset in chronological order, using the modulo operator to only perform calculations every 4 bars.
+// 1. The algorithm iterates through the dataset in chronological order, using the modulo operator to only perform calculations every lookbackBars.
 //    This serves the dual purpose of reducing the computational overhead of the algorithm and ensuring a minimum chronological spacing 
-//    between the neighbors of at least 4 bars.
+//    between the neighbors of at least lookbackBars.
 // 2. A list of the k-similar neighbors is simultaneously maintained in both a predictions array and corresponding distances array.
 // 3. When the size of the predictions array exceeds the desired number of nearest neighbors specified in settings.neighborsCount, 
 //    the algorithm removes the first neighbor from the predictions array and the corresponding distance array.
@@ -383,7 +386,7 @@ sizeLoop = math.min(settings.maxBarsBack-1, size)
 if bar_index >= maxBarsBackIndex //{
     for i = 0 to sizeLoop //{
         d = get_lorentzian_distance(i, settings.featureCount, featureSeries, featureArrays) 
-        if d >= lastDistance and i%4 //{
+        if d >= lastDistance and i%lookbackBars //{
             lastDistance := d            
             array.push(distances, d)
             array.push(predictions, math.round(array.get(y_train_array, i)))
@@ -407,19 +410,19 @@ filter_all = filter.volatility and filter.regime and filter.adx
 // Filtered Signal: The model's prediction of future price movement direction with user-defined filters applied
 signal := prediction > 0 and filter_all ? direction.long : prediction < 0 and filter_all ? direction.short : nz(signal[1])
 
-// Bar-Count Filters: Represents strict filters based on a pre-defined holding period of 4 bars
+// Bar-Count Filters: Represents strict filters based on a pre-defined holding period of lookbackBars bars
 var int barsHeld = 0
 barsHeld := ta.change(signal) ? 0 : barsHeld + 1
-isHeldFourBars = barsHeld == 4
-isHeldLessThanFourBars = 0 < barsHeld and barsHeld < 4
+isHeldFourBars = barsHeld == lookbackBars
+isHeldLessThanFourBars = 0 < barsHeld and barsHeld < lookbackBars
 
-// Fractal Filters: Derived from relative appearances of signals in a given time series fractal/segment with a default length of 4 bars
+// Fractal Filters: Derived from relative appearances of signals in a given time series fractal/segment with a default length of lookbackBars bars
 isDifferentSignalType = ta.change(signal)
 isEarlySignalFlip = ta.change(signal) and (ta.change(signal[1]) or ta.change(signal[2]) or ta.change(signal[3]))
 isBuySignal = signal == direction.long and isEmaUptrend and isSmaUptrend
 isSellSignal = signal == direction.short and isEmaDowntrend and isSmaDowntrend
-isLastSignalBuy = signal[4] == direction.long and isEmaUptrend[4] and isSmaUptrend[4]
-isLastSignalSell = signal[4] == direction.short and isEmaDowntrend[4] and isSmaDowntrend[4]
+isLastSignalBuy = signal[lookbackBars] == direction.long and isEmaUptrend[lookbackBars] and isSmaUptrend[lookbackBars]
+isLastSignalSell = signal[lookbackBars] == direction.short and isEmaDowntrend[lookbackBars] and isSmaDowntrend[lookbackBars]
 isNewBuySignal = isBuySignal and isDifferentSignalType
 isNewSellSignal = isSellSignal and isDifferentSignalType
 
@@ -477,8 +480,8 @@ endLongTradeDynamic = (isBearishChange and isValidLongExit[1])
 endShortTradeDynamic = (isBullishChange and isValidShortExit[1])
 
 // Fixed Exit Conditions: Booleans for ML Model Position Exits based on a Bar-Count Filters
-endLongTradeStrict = ((isHeldFourBars and isLastSignalBuy) or (isHeldLessThanFourBars and isNewSellSignal and isLastSignalBuy)) and startLongTrade[4]
-endShortTradeStrict = ((isHeldFourBars and isLastSignalSell) or (isHeldLessThanFourBars and isNewBuySignal and isLastSignalSell)) and startShortTrade[4]
+endLongTradeStrict = ((isHeldFourBars and isLastSignalBuy) or (isHeldLessThanFourBars and isNewSellSignal and isLastSignalBuy)) and startLongTrade[lookbackBars]
+endShortTradeStrict = ((isHeldFourBars and isLastSignalSell) or (isHeldLessThanFourBars and isNewBuySignal and isLastSignalSell)) and startShortTrade[lookbackBars]
 isDynamicExitValid = not useEmaFilter and not useSmaFilter and not useKernelSmoothing
 endLongTrade = settings.useDynamicExits and isDynamicExitValid ? endLongTradeDynamic : endLongTradeStrict 
 endShortTrade = settings.useDynamicExits and isDynamicExitValid ? endShortTradeDynamic : endShortTradeStrict
