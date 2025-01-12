@@ -1,10 +1,13 @@
-// This work is licensed under a Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) https://creativecommons.org/licenses/by-nc-sa/4.0/
-//@version=5
+# type: ignore
+# The below is the Pine Script code for the Neural Network indicator.
+# Remember to bump version numbers if it's not updating inside TradingVIew!
+//@version=6
 indicator("Neural Network", overlay=true, shorttitle="Neural Network")
 
 lr = input.float(title='Learning Rate', defval=0.1, minval=0.00001)
 epochs = input.int(title='Epochs', defval=60, minval=10, maxval=1000)
 use_simple_backprop = input(defval=false, title='Simple Backpropagation')
+input_bars = input.int(title='Input Bars', defval=10, minval=1, tooltip="Number of bars to use as input for the neural network")
 
 plot_loss_curve = input(true, 'Plot Loss Curve', group='Statistics')
 chart_scaling = input.int(title='Chart Scaling Factor', defval=1, minval=1, group = 'Statistics')
@@ -17,8 +20,8 @@ var max_scale = 0.0
 max_scale := high > max_scale ? high : max_scale
 
 // Initialize weight matrices at random for better feature distribution
-var w1 = matrix.new<float>(2, 2, 0.0)
-var w2 = matrix.new<float>(1, 2, 0.0)
+var w1 = matrix.new<float>(10, 10, 0.0)  // Increased size of the first layer
+var w2 = matrix.new<float>(1, 10, 0.0)   // Increased size of the second layer
 
 
 // Function to fill each element of a matrix with random values, while maintaining reproducibility with a seed. 
@@ -35,8 +38,8 @@ fillMatrixRandomly(matrix, rows, cols) =>
 // It is important that the weights are not initialized with the same values, to induce asymmetry during gradient updates.
 // This allows the network to utilize all the weights effectively
 if barstate.isfirst
-    fillMatrixRandomly(w1, 2, 2)
-    fillMatrixRandomly(w2, 1, 2)
+    fillMatrixRandomly(w1, 10, 10)
+    fillMatrixRandomly(w2, 1, 10)
 
 // Sigmoid activation function
 sigmoid(x) =>
@@ -60,15 +63,15 @@ feedforward(input) =>
     hidden_out = array.new_float(0)
 
     // Push through the first layer
-    for i = 0 to 1
+    for i = 0 to 9
         sum = 0.0
-        for j = 0 to 1
+        for j = 0 to 9
             sum := sum + w1.get(i, j) * array.get(input, j)
         array.push(hidden_out, sigmoid(sum))
 
     // Push through the second layer
     output = 0.0
-    for i = 0 to 1
+    for i = 0 to 9
         output := output + w2.get(0, i) * array.get(hidden_out, i)
     output := sigmoid(output)
     [output, hidden_out]
@@ -77,12 +80,12 @@ feedforward(input) =>
 backpropagation_simple(input, actual_output, predicted_output, hidden_out) => 
 
     // Update weights of the second layer
-    for i = 0 to 1
+    for i = 0 to 9
         w2.set(0, i, w2.get(0, i) - lr * 2 * (predicted_output - actual_output) * array.get(hidden_out, i))
 
     // Update weights of the first layer
-    for i = 0 to 1
-        for j = 0 to 1
+    for i = 0 to 9
+        for j = 0 to 9
             w1.set(i, j, w1.get(i, j) - lr * 2 * (predicted_output - actual_output) * w2.get(0, i) * array.get(input, j))
 
 backpropagation_verbose(input, actual_output, predicted_output, hidden_out) =>
@@ -90,14 +93,14 @@ backpropagation_verbose(input, actual_output, predicted_output, hidden_out) =>
     float d_loss_d_output = 2 * (predicted_output - actual_output)
     
     // Update weights of the second layer
-    for i = 0 to 1
+    for i = 0 to 9
         float hidden_val = array.get(hidden_out, i)
         float d_loss_d_w2 = d_loss_d_output * hidden_val
         w2.set(0, i, w2.get(0, i) - lr * d_loss_d_w2)
     
     // Update weights of the first layer
-    for i = 0 to 1
-        for j = 0 to 1
+    for i = 0 to 9
+        for j = 0 to 9
             float input_val = array.get(input, j)
             float w2_val = w2.get(0, i)
             float hidden_val = array.get(hidden_out, i)
@@ -132,8 +135,8 @@ train_nn(input, actual_output) =>
 
 // Define input and output variables that the network will use.
 float[] input = array.new_float(0)
-array.push(input, normalize(close[1]))
-array.push(input, normalize(close[2]))
+for i = 1 to input_bars
+    array.push(input, normalize(close[i]))
 actual_output = normalize(close)
 
 // Perform training only on the last confirmed bar to save resources
