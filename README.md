@@ -16,12 +16,12 @@
 
 ## Mathematicians who have had trading success:
 - Leibowitz of Inside the Yield Book had a PhD in math before going into finance.
-- Professor Edward Thorp started one of the first hedge funds based on statistical arbitrage. Check out his autobiography A Man for all Markets, along with Beat the Dealer and Beat the Market.
-- Alongside Thorp as one of the first "quants" who applied mathematical and algorithmic principals to Wall Street is Jim Simons, known in math for the Chern-Simons form, and famous publicly for his hedge fund Rennaissance Technology and its Medallion Fund. His life is chronicled in the biography The Man Who Solved the Market.
+- Professor Edward Thorp started one of the first hedge funds based on statistical arbitrage. Check out his autobiography "A Man for all Markets," along with "Beat the Dealer" and "Beat the Market."
+- Alongside Thorp as one of the first "quants" who applied mathematical and algorithmic principals to Wall Street is Jim Simons, known in math for the Chern-Simons form, and famous publicly for his hedge fund Rennaissance Technology and its Medallion Fund. His life is chronicled in the biography "The Man Who Solved the Market."
 
 ## Video References:
 
-- Pretty much all complex options strategies are made by combining different types of spreads. These all require level 3 options trading. For a basic overview of options, start [here](https://www.youtube.com/watch?v=4HMm6mBvGKE) and [here](https://www.youtube.com/watch?v=MiybniIIvx0). You may also want to start learning about the Greeks.
+- Pretty much all complex options strategies are made by combining different types of spreads. These all require level 3 options trading. For a basic overview of options, start [here](https://www.youtube.com/watch?v=4HMm6mBvGKE) and [here](https://www.youtube.com/watch?v=MiybniIIvx0). You may also want to start learning about [the Greeks](https://www.youtube.com/watch?v=kCJcEOYuuII).
 - Here is a nice video on long vertical spreads, also called debit spreads, which is probably the most similar to buying calls or puts directly. The difference is you somewhat offset theta decay (though also limiting your maximum possible gain) by simultaneously selling an equal number of options. [Here is the video.](https://www.youtube.com/watch?v=1SVswX2V_vE)
 - Here is another video, by the same channel, on short vertical spreads, also called credit spreads. This is where you are trying to profit from theta decay and taking on the role of the "option seller." The problem with selling options though, is that your losses can be huge if the options you sold end up in the money, so you can offset those risks by buying an equal number of options that are further out of the money. This limits your total possible losses. [Here is the video.](https://www.youtube.com/watch?v=6_0SbRaHv1U)
 - If you want to go more in depth, there's a guy I used to watch who does pretty long detailed videos. [Here's his video on both types of vertical spreads.](https://www.youtube.com/watch?v=mwttDWfDQ9c)
