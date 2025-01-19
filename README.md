@@ -51,3 +51,22 @@ This is primarily research I encountered at JMM 2025.
 - https://github.com/Alejandro-Duenas/deep-learning-portfolio
 - https://github.com/moondevonyt/moon-dev-ai-agents-for-trading
 - https://github.com/nickmccullum/algorithmic-trading-python
+
+## Medium articles
+- https://drlee.io/advanced-stock-pattern-prediction-using-lstm-with-the-attention-mechanism-in-tensorflow-a-step-by-143a2e8b0e95
+- https://kaabar-sofien.medium.com/how-to-create-a-sentiment-analysis-model-in-python-cf03cb9988e0
+- https://medium.com/@kaveh.kamali/how-i-found-a-simple-way-to-use-machine-learning-in-stock-trading-6c80795cd95f
+- https://medium.com/@zodiactrading/top-10-quantitative-trading-strategies-with-python-82b1eff67650
+- https://medium.datadriveninvestor.com/creating-a-scalping-strategy-in-python-with-a-74-win-rate-53a17662ff03
+- https://medium.com/@harshiljani2002/building-stock-market-engine-from-scratch-in-rust-i-9be7c110e137
+- https://databento.medium.com/algorithmic-trading-guide-high-frequency-liquidity-taking-strategy-f1a04172d5d5
+- https://levelup.gitconnected.com/backtesting-the-most-underrated-sma-trading-strategy-which-beats-the-market-b7a2f588a502
+- https://medium.com/@crisvelasquez/algorithmically-identifying-stock-price-support-resistance-in-python-b9095f9aa279
+- https://liamlincoln.medium.com/i-have-just-created-a-trading-ea-monster-c87a523afe7e
+- https://medium.com/@amaltyagi/3-secure-trading-strategies-for-2024-2a922c5aee64
+- https://medium.com/@austin-starks/i-built-an-algorithmic-trading-system-in-rust-heres-what-i-regret-a89f378b22c9
+- https://wire.insiderfinance.io/architecting-a-trading-system-57ee3963e52a
+- https://medium.com/@rgaveiga/python-for-options-trading-3-a-trade-with-100-probability-of-profit-886e934addbf
+- https://medium.com/rustaceans/rust-in-finance-building-a-scalable-high-frequency-trading-platform-from-scratch-339cdf9d6f08
+- https://levelup.gitconnected.com/an-algo-trading-strategy-which-made-8-371-a-python-case-study-58ed12a492dc
+- https://medium.datadriveninvestor.com/an-in-depth-guide-on-mathematically-improving-your-trading-strategy-fa8ac2a0e5da
