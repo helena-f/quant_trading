@@ -26,20 +26,28 @@
 - Here is another video, by the same channel, on short vertical spreads, also called credit spreads. This is where you are trying to profit from theta decay and taking on the role of the "option seller." The problem with selling options though, is that your losses can be huge if the options you sold end up in the money, so you can offset those risks by buying an equal number of options that are further out of the money. This limits your total possible losses. [Here is the video.](https://www.youtube.com/watch?v=6_0SbRaHv1U)
 - If you want to go more in depth, there's a guy I used to watch who does pretty long detailed videos. [Here's his video on both types of vertical spreads.](https://www.youtube.com/watch?v=mwttDWfDQ9c)
 - There is also the wheel, which requires owning the underlying stock. [Here's a video on it.](https://www.youtube.com/watch?v=EcsErh9Airs&t=395s)
+- Quantitative analysis course in python. [Video here.](https://youtu.be/a0rcZkJP4RQ?si=m9CgyBVBmF9W1DNS)
 - Once you start watching these videos, you'll find a lot of similar channels with different people's explanations and strategies, so I encourage you to explore and discover new channels that work for you!
 
 
 ## Research
 
-This is primarily research I encountered at JMM 2025
+This is primarily research I encountered at JMM 2025.
 
 Articles:
 - [Predicting stock market index using LSTM](https://www.sciencedirect.com/science/article/pii/S2666827022000378)
 - [Predicting NEPSE index price using deep learning models](https://www.sciencedirect.com/science/article/pii/S2666827022000706)
 - [Hedging via Perpetual Derivatives: Trinomial Option Pricing and Implied Parameter Surface Analysis](https://arxiv.org/abs/2410.04748)
+- [The Distribution Builder: A Tool for Inferring Investor Preferences](https://web.stanford.edu/~wfsharpe/art/qpaper/qpaper.html)
+- [Analysis of Investment Returns as Markov Chain Random Walk](https://onlinelibrary.wiley.com/doi/10.1155/2024/3966566)
 
 Unpublished abstracts:
 - [Can We See the Next Recession Coming? Deep Learning in Economic Forecasting.](https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/41055)
 - [FOREX Prediction Using Deep Learning](https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/43462)
 - [Deep Learning Techniques for Equity Portfolio Construction, Optimization, and Performance Analysis](https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/45238)
 - [Wavelet Based Reinforcement Learning for Pairs Trading Across Multiple Asset Classes](https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/45119)
+
+## GitHub repositories
+- https://github.com/Alejandro-Duenas/deep-learning-portfolio
+- https://github.com/moondevonyt/moon-dev-ai-agents-for-trading
+- https://github.com/nickmccullum/algorithmic-trading-python
