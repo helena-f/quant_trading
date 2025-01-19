@@ -34,14 +34,14 @@
 
 This is primarily research I encountered at JMM 2025.
 
-Articles:
+### Articles
 - [Predicting stock market index using LSTM](https://www.sciencedirect.com/science/article/pii/S2666827022000378)
 - [Predicting NEPSE index price using deep learning models](https://www.sciencedirect.com/science/article/pii/S2666827022000706)
 - [Hedging via Perpetual Derivatives: Trinomial Option Pricing and Implied Parameter Surface Analysis](https://arxiv.org/abs/2410.04748)
 - [The Distribution Builder: A Tool for Inferring Investor Preferences](https://web.stanford.edu/~wfsharpe/art/qpaper/qpaper.html)
 - [Analysis of Investment Returns as Markov Chain Random Walk](https://onlinelibrary.wiley.com/doi/10.1155/2024/3966566)
 
-Unpublished abstracts:
+### Unpublished AMS abstracts
 - [Can We See the Next Recession Coming? Deep Learning in Economic Forecasting.](https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/41055)
 - [FOREX Prediction Using Deep Learning](https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/43462)
 - [Deep Learning Techniques for Equity Portfolio Construction, Optimization, and Performance Analysis](https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/45238)
