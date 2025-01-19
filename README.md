@@ -1,6 +1,6 @@
 # Quantitative Analysis and Trading Project
 
-## Contributors: Helena Fu, Rob Costa, Sindy
+## Contributors: Helena Fu, Rob Costa, Sindy Zhang
 
 ## Project Overview:
 
@@ -12,7 +12,7 @@
 - The best book I know on machine learning is Bishop's [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf).
 - Some good books include "High Probability Trading," "Option Volatility and Pricing," Technical Analysis of the Financial Markets," "Options Trading: The Bible", "Mind over Markets."
 - For more historical perspectives, I also enjoy reading the Market Wizards books, When Genius Failed, and Michael Lewis's writings from the last few decades such as Liar's Poker.
-- Also for more general tips, "The Money Game," "Mastering the Trade" and "Trading in the Zone," or memoirs like from Nicolas Darvas and Jesse Livermore.
+- Also for more general tips, "The Money Game," "Mastering the Trade" and "Trading in the Zone," or memoirs like "How I Made $2,000,000 in the Stock Market" from Nicolas Darvas and "Reminiscences of a Stock Operator" about Jesse Livermore.
 
 ## Mathematicians who have had trading success:
 - Leibowitz of Inside the Yield Book had a PhD in math before going into finance.
