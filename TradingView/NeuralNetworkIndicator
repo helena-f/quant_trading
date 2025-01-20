@@ -1,6 +1,3 @@
-# type: ignore
-# The below is the Pine Script code for the Neural Network indicator.
-# Remember to bump version numbers if it's not updating inside TradingVIew!
 //@version=6
 indicator("Neural Network", overlay=true, shorttitle="Neural Network")
 

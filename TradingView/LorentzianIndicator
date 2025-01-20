@@ -1,5 +1,5 @@
 // This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
-// ©jdehorty
+// Modified from code by ©jdehorty
 
 // @version=5
 indicator('Modified Machine Learning: Lorentzian Classification', 'Modified Lorentzian Classification', true, precision=4, max_labels_count=500) 
