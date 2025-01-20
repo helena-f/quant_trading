@@ -1,0 +1,1 @@
+I'm adding code for some of the indicators I've been using, though the neural network was not working to satisfaction. I have found when editing these that syntax highlighting works well as C#, R, Julia, or Python. The code then needs to be pasted back into a custom indicator in TradingView.
