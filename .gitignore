@@ -1,0 +1,6 @@
+# Ignore the credentials.py file
+credentials.py
+
+# Ignore the .ipynb_checkpoints and __pycache__ directories
+.ipynb_checkpoints/
+__pycache__/
