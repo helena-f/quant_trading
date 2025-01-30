@@ -1,8 +1,7 @@
+//@version=5
+strategy("My Momentum Strategy", overlay=true)
 // This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
-// Modified from code by ©jdehorty
-
-// @version=5
-indicator('Modified Machine Learning: Lorentzian Classification', 'Modified Lorentzian Classification', true, precision=4, max_labels_count=500) 
+// Modified by Rob from code by ©jdehorty
 
 import jdehorty/MLExtensions/2 as ml
 import jdehorty/KernelFunctions/2 as kernels
@@ -486,6 +485,16 @@ endShortTradeStrict = ((isHeldFourBars and isLastSignalSell) or (isHeldLessThanF
 isDynamicExitValid = not useEmaFilter and not useSmaFilter and not useKernelSmoothing
 endLongTrade = settings.useDynamicExits and isDynamicExitValid ? endLongTradeDynamic : endLongTradeStrict 
 endShortTrade = settings.useDynamicExits and isDynamicExitValid ? endShortTradeDynamic : endShortTradeStrict
+
+// Strategy
+if startLongTrade
+    strategy.entry("buy", strategy.long, 10)
+if endLongTrade
+	strategy.close("buy")
+if startShortTrade
+    strategy.entry("sell", strategy.short, 10)
+if endShortTrade
+	strategy.close("sell")
 
 // =========================
 // ==== Plotting Labels ====
