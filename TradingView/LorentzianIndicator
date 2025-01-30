@@ -487,14 +487,32 @@ endLongTrade = settings.useDynamicExits and isDynamicExitValid ? endLongTradeDyn
 endShortTrade = settings.useDynamicExits and isDynamicExitValid ? endShortTradeDynamic : endShortTradeStrict
 
 // Strategy
-if startLongTrade
-    strategy.entry("buy", strategy.long, 10)
+
+if isBuySignal and isBullish and isEmaUptrend and isSmaUptrend
+    strategy.close("sell")
+    strategy.order("buy", strategy.long)
+else if isSellSignal and isBearish and isEmaDowntrend and isSmaDowntrend
+    strategy.close("buy")
+    strategy.order("sell", strategy.short)
 if endLongTrade
-	strategy.close("buy")
-if startShortTrade
-    strategy.entry("sell", strategy.short, 10)
-if endShortTrade
-	strategy.close("sell")
+    strategy.close("buy")
+else if endShortTrade
+    strategy.close("sell")
+
+// Updated to use above code to make it add more to winning trades.
+// I think it was too bold below to immediately switch directions.
+// if startLongTrade
+//    strategy.close("sell")
+//    strategy.entry("buy", strategy.long, 10)
+// if endLongTrade
+//     strategy.close("buy")
+//    strategy.entry("sell", strategy.short, 5)
+// if startShortTrade
+//    strategy.close("buy")
+//    strategy.entry("sell", strategy.short, 10)
+// if endShortTrade
+//     strategy.close("sell")
+//    strategy.entry("buy", strategy.long, 5)
 
 // =========================
 // ==== Plotting Labels ====
