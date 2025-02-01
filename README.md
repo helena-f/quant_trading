@@ -21,12 +21,28 @@
 
 ## Video References
 
+### Videos about automated analysis and trading in python
+
+- Full Courses
+  - Algorithmic Trading Using Python - 3 hour course. [Video here.](https://www.youtube.com/watch?v=9Y3yaoi9rUQ)
+  - Algorithmic Trading Using Python - 4 hour course. [Video here.](https://www.youtube.com/watch?v=xfzGZB4HhEE)
+  - How To Build A Trading Bot In Python - 9 hour course. [Video here.](https://www.youtube.com/watch?v=jz3tEsCcie0)
+- Demos
+  - Stock Option Screener in Python - 16 min demo. [Video here.](https://www.youtube.com/watch?v=aeAoVTu66iU)
+  - Introduction to Algorithmic Trading Using Python - 17 min demo. [Video here.](https://www.youtube.com/watch?v=fqltiq5EahU)
+  - How To Build A Trading Bot In Python - 18 min demo. [Video here.](https://www.youtube.com/watch?v=WcfKaZL4vpA)
+  - How to Code a Trading Bot with QuantConnect - 23 min demo. [Video here.](https://www.youtube.com/watch?v=s8uyLscRl-Q)
+  - Coding an Options Trading Algorithm with QuantConnect - 26 min demo. [Video here.](https://www.youtube.com/watch?v=Lq-Ri7YU5fU)
+  - Probability Distribution of Stock Returns - 35 min demo. [Video here.](https://youtu.be/a0rcZkJP4RQ?si=m9CgyBVBmF9W1DNS)
+  - How to Code an AI Trading bot - 35 min demo. [Video here.](https://www.youtube.com/watch?v=c9OjEThuJjY)
+
+### Videos about understanding options
+
 - Pretty much all complex options strategies are made by combining different types of spreads. These all require level 3 options trading. For a basic overview of options, start [here](https://www.youtube.com/watch?v=4HMm6mBvGKE) and [here](https://www.youtube.com/watch?v=MiybniIIvx0). You may also want to start learning about [the Greeks](https://www.youtube.com/watch?v=kCJcEOYuuII).
 - Here is a nice video on long vertical spreads, also called debit spreads, which is probably the most similar to buying calls or puts directly. The difference is you somewhat offset theta decay (though also limiting your maximum possible gain) by simultaneously selling an equal number of options. [Here is the video.](https://www.youtube.com/watch?v=1SVswX2V_vE)
 - Here is another video, by the same channel, on short vertical spreads, also called credit spreads. This is where you are trying to profit from theta decay and taking on the role of the "option seller." The problem with selling options though, is that your losses can be huge if the options you sold end up in the money, so you can offset those risks by buying an equal number of options that are further out of the money. This limits your total possible losses. [Here is the video.](https://www.youtube.com/watch?v=6_0SbRaHv1U)
 - If you want to go more in depth, there's a guy I used to watch who does pretty long detailed videos. [Here's his video on both types of vertical spreads.](https://www.youtube.com/watch?v=mwttDWfDQ9c)
 - There is also the wheel, which requires owning the underlying stock. [Here's a video on it.](https://www.youtube.com/watch?v=EcsErh9Airs&t=395s)
-- Quantitative analysis course in python. [Video here.](https://youtu.be/a0rcZkJP4RQ?si=m9CgyBVBmF9W1DNS)
 - Once you start watching these videos, you'll find a lot of similar channels with different people's explanations and strategies, so I encourage you to explore and discover new channels that work for you!
 
 
@@ -48,9 +64,10 @@ This is primarily research I encountered at JMM 2025.
 - [Wavelet Based Reinforcement Learning for Pairs Trading Across Multiple Asset Classes](https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/45119)
 
 ## GitHub repositories
+- https://github.com/thequantpy
+- https://github.com/nickmccullum/algorithmic-trading-python
 - https://github.com/Alejandro-Duenas/deep-learning-portfolio
 - https://github.com/moondevonyt/moon-dev-ai-agents-for-trading
-- https://github.com/nickmccullum/algorithmic-trading-python
 
 ## Medium articles
 - https://drlee.io/advanced-stock-pattern-prediction-using-lstm-with-the-attention-mechanism-in-tensorflow-a-step-by-143a2e8b0e95
