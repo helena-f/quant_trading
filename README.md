@@ -6,7 +6,7 @@
 
 ## Book References
 
-- For fundamental analysis, look at Murphy's [Technical Analysis of the Financial Markets: A Comprehensive Guide to Trading Methods and Applications](https://glenbradford.com/files/Stocks/security-analysis-benjamin-graham-6th-edition-pdf-february-24-2010-12-08-am-3-0-meg.pdf).
+- For fundamental analysis, look at Murphy's [Technical Analysis of the Financial Markets: A Comprehensive Guide to Trading Methods and Applications](https://github.com/ShamaUgale/myBooks/blob/master/John%20J%20Murphy%20-%20Technical%20Analysis%20Of%20The%20Financial%20Markets.pdf).
 - For technical analysis, check out Graham and Dodd's [Security Analysis: Principles and Technique](https://glenbradford.com/files/Stocks/security-analysis-benjamin-graham-6th-edition-pdf-february-24-2010-12-08-am-3-0-meg.pdf).
 - For bonds and yields, the standard is Leibowitz and Homer's [Inside the Yield Book](https://archive.org/details/insideyieldbookn00home).
 - The best book I know on machine learning is Bishop's [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf).
