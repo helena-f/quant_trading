@@ -1,6 +1,6 @@
 # Quantitative Analysis and Trading Project
 
-## Contributors: Helena Fu, Rob Costa, Sindy Zhang
+## Contributors: Helena Fu, Rob Costa
 
 ## Project Overview
 
