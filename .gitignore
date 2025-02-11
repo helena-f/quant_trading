@@ -4,3 +4,6 @@ credentials.py
 # Ignore the .ipynb_checkpoints and __pycache__ directories
 .ipynb_checkpoints/
 __pycache__/
+
+# Ignore the __pycache__ directories in FinancialModelResearch/HMM foleder
+FinancialModelResearch/HMM/__pycache__/
